@@ -6,7 +6,7 @@ from flask import Flask, request, render_template, session, flash, redirect, \
 from celery import Celery
 from flask_sqlalchemy import SQLAlchemy
 from random import choice
-from flask_celery import make_celery
+from .flask_celery import make_celery
 from flask_migrate import Migrate
 
 import os
