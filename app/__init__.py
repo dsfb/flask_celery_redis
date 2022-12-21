@@ -7,7 +7,7 @@ from celery import Celery
 from flask_sqlalchemy import SQLAlchemy
 from random import choice
 from flask_celery import make_celery
-
+from flask_migrate import Migrate
 
 import os
 
@@ -24,7 +24,10 @@ app.config.update(CELERY_CONFIG={
 })
 celery = make_celery(app)
 
+
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 with app.app_context():
 
     from app.views import views

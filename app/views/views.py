@@ -3,14 +3,11 @@ from random import choice
 from flask import jsonify
 
 from app import celery
-
-class Usuarios(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(1000))
+from app.models.models import Usuario
 
 
 
-@app.route("/process/<name>")
+@app.route("/nomes/<name>")
 def retorna_nomes(name):
     
     task_valores.delay(name)
@@ -22,8 +19,7 @@ def insert_valores():
     for i in range(50):
 
         data = ''.join(choice('ABCDE') for i in range(2))
-        results = Usuarios(nome=data)
-        print
+        results = Usuario(nome=data)
         db.session.add(results)
 
         db.session.commit()
